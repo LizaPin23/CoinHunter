@@ -7,18 +7,24 @@ namespace CoinHunter.Player
     public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-        [SerializeField] private string _moveName = "MoveBool";
-        [SerializeField] private string _jumpName = "JumpBool";
+        [SerializeField] private string _stateParamName = "State";
+        [SerializeField] private int _idleState = 0;
+        [SerializeField] private int _moveState = 1;
+        [SerializeField] private int _jumpState = 2;
 
-
-        public void Move(bool value)
+        public void Move()
         {
-            _animator.SetBool(_moveName, value);
+            _animator.SetInteger(_stateParamName, _moveState);
         }
 
-        public void Jump(bool value)
+        public void Jump()
         {
-            _animator.SetBool(_jumpName, value);
+            _animator.SetInteger(_stateParamName, _jumpState);
+        }
+
+        public void Idle()
+        {
+            _animator.SetInteger(_stateParamName, _idleState);
         }
     }
 }
