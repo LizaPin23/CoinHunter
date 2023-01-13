@@ -6,16 +6,19 @@ namespace CoinHunter.Player
 {
     public class PlayerAnimator : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] private Animator _animator;
+        [SerializeField] private string _moveName = "MoveBool";
+        [SerializeField] private string _jumpName = "JumpBool";
 
+
+        public void Move(bool value)
+        {
+            _animator.SetBool(_moveName, value);
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Jump(bool value)
         {
-
+            _animator.SetBool(_jumpName, value);
         }
     }
 }
