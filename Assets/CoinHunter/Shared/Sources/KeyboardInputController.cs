@@ -23,6 +23,7 @@ namespace CoinHunter.Shared
         private void CatchMovementButtons()
         {
             float movementX = Input.GetAxis("Horizontal");
+
             Movement?.Invoke(movementX);
         }
     }

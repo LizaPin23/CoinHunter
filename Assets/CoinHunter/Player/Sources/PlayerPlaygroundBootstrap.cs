@@ -13,6 +13,7 @@ namespace CoinHunter.Player
         private void Awake()
         {
             _input.Movement += _player.OnMovementKeyPressed;
+            _input.SpacePressed += _player.OnJumpKeyPressed;
         }
     }
 }
