@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CoinHunter.Shared;
+﻿using CoinHunter.Shared;
 using UnityEngine;
 
 namespace CoinHunter.Player

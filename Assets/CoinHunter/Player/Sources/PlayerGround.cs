@@ -1,18 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class PlayerGround : MonoBehaviour
+namespace CoinHunter.Player
 {
-    public bool Grounded { get; private set; }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class PlayerGround : MonoBehaviour
     {
-        Grounded = true;
-    }
+        public event Action<bool> GroundStateChanged;
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Grounded = false;
+        public bool Grounded { get; private set; }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Grounded = true;
+            GroundStateChanged?.Invoke(true);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            Grounded = false;
+            GroundStateChanged?.Invoke(false);
+        }
     }
 }
+

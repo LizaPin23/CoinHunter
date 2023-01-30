@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CoinHunter.Player
 {
@@ -10,10 +8,17 @@ namespace CoinHunter.Player
         [SerializeField] private PlayerAnimator _animator;
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGround _ground;
+        [SerializeField] private PlayerSideSwitcher _sideSwitcher;
+
+        private void Awake()
+        {
+            _ground.GroundStateChanged += OnGroundStateChanged;
+        }
 
         public void OnMovementKeyPressed(float movement)
         {
             _movement.Move(movement);
+            _sideSwitcher.ChooseSide(movement);
             _animator.SetMoving(!Mathf.Approximately(movement, 0));
         }
 
@@ -24,6 +29,11 @@ namespace CoinHunter.Player
                 _jump.Jump();
                 _animator.SetOnAir(true);
             }
+        }
+
+        private void OnGroundStateChanged(bool value)
+        {
+            _animator.SetOnAir(!value);
         }
     }
 }
