@@ -1,19 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
-    private const float _z = -10f;
+    [SerializeField] private Transform _targetTransform;
+    [SerializeField] private float _speed = 3f;
 
-    void Start()
-    {
-        
-    }
+    private const float _z = -10f;
 
     void Update()
     {
-        transform.position = new Vector3(_transform.position.x, _transform.position.y, _z);
+        Vector3 difference = _targetTransform.position - transform.position;
+        Vector3 movement = _speed * difference;
+        movement.z = _z;
+
+        transform.Translate(movement * Time.deltaTime);
     }
 }

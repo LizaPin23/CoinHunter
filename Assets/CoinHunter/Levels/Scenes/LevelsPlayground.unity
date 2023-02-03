@@ -504,6 +504,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5358858612605168614, guid: e91148edc80d64e44ba73373fc261321,
+        type: 3}
+      propertyPath: _speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5358858612658908527, guid: e91148edc80d64e44ba73373fc261321,
         type: 3}
       propertyPath: m_SortingOrder
@@ -2040,7 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1246074753}
-  _force: 4
+  _force: 3
 --- !u!1 &1817286903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,7 +2223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee42b86018059e24fbd8d21bcb97e2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transform: {fileID: 1233301113}
+  _targetTransform: {fileID: 1233301113}
+  _speed: 3
 --- !u!1 &1944749669
 GameObject:
   m_ObjectHideFlags: 0
