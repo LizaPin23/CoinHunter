@@ -9,10 +9,12 @@ namespace CoinHunter.Player
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGround _ground;
         [SerializeField] private PlayerSideSwitcher _sideSwitcher;
+        [SerializeField] private FallInWater _fall;
 
         private void Awake()
         {
             _ground.GroundStateChanged += OnGroundStateChanged;
+            _fall.GameOver += OnGameOver;
         }
 
         public void OnMovementKeyPressed(float movement)
@@ -34,6 +36,11 @@ namespace CoinHunter.Player
         private void OnGroundStateChanged(bool value)
         {
             _animator.SetOnAir(!value);
+        }
+
+        private void OnGameOver()
+        {
+            //появляется экран и все останавливается
         }
     }
 }
