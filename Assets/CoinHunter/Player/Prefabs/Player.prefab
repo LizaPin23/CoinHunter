@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5358858612605168613}
   - component: {fileID: 5358858612605168612}
   - component: {fileID: 5358858612605168539}
+  - component: {fileID: 2218186723870132540}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -90,6 +91,7 @@ MonoBehaviour:
   _jump: {fileID: 5358858612605168613}
   _ground: {fileID: 5358858613734283549}
   _sideSwitcher: {fileID: 5358858613779228152}
+  _fall: {fileID: 0}
 --- !u!114 &5358858612605168614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +156,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0061222315, y: -0.09183025}
   m_Size: {x: 1.3203497, y: 1.6509385}
   m_Direction: 0
+--- !u!210 &2218186723870132540
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358858612605168611}
+  m_Enabled: 1
+  m_SortingLayerID: 1820198097
+  m_SortingLayer: 3
+  m_SortingOrder: 0
 --- !u!1 &5358858612658908521
 GameObject:
   m_ObjectHideFlags: 0

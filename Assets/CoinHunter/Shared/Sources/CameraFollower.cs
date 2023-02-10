@@ -10,9 +10,8 @@ public class CameraFollower : MonoBehaviour
     void Update()
     {
         Vector3 difference = _targetTransform.position - transform.position;
-        Vector3 movement = _speed * difference;
-        movement.z = _z;
-
-        transform.Translate(movement * Time.deltaTime);
+        Vector3 movement = _speed * difference * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x + movement.x,
+            transform.position.y + movement.y, _z);
     }
 }
