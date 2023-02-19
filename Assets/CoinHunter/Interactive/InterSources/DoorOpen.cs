@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpen : MonoBehaviour
+namespace CoinHunter.Levels.Interactive
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DoorOpen : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Animator _animator;
+        [SerializeField] private string _ = "Moving";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        private void Open()
+        {
+
+        }
     }
 }
+
