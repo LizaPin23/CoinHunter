@@ -12,7 +12,7 @@ namespace CoinHunter.Levels.Interactive
         {
             if (collision.TryGetComponent<ButtonBlock>(out ButtonBlock buttonBlock))
             {
-               //_doorOpen.
+                _doorOpen.Open();
             }
         }
     }

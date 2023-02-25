@@ -35,8 +35,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: DoorInt
+  - m_ConditionMode: 2
+    m_ConditionEvent: DoorBool
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3818093867919408077}
@@ -60,8 +60,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: DoorInt
+  - m_ConditionMode: 2
+    m_ConditionEvent: DoorBool
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8494112541777086639}
@@ -85,8 +85,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: DoorInt
+  - m_ConditionMode: 1
+    m_ConditionEvent: DoorBool
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6019530589146105563}
@@ -110,8 +110,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: DoorInt
+  - m_ConditionMode: 1
+    m_ConditionEvent: DoorBool
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7877734784120691271}
@@ -163,8 +163,8 @@ AnimatorController:
   m_Name: DoorController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: DoorInt
-    m_Type: 3
+  - m_Name: DoorBool
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

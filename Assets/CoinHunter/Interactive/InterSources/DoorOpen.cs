@@ -7,12 +7,14 @@ namespace CoinHunter.Levels.Interactive
     public class DoorOpen : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-        [SerializeField] private string _ = "Moving";
+        //[SerializeField] private string _movingBool = "Moving";
+        [SerializeField] private string _doorBool = "DoorBool";
 
 
-        private void Open()
+
+        public void Open()
         {
-
+            _animator.SetBool(_doorBool, true);
         }
     }
 }
