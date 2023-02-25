@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CoinHunter.Player
 {
-    public class PlayerCollectables : MonoBehaviour
+    public class PlayerInteractive : MonoBehaviour
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {

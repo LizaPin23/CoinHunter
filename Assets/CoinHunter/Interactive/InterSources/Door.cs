@@ -4,17 +4,14 @@ using UnityEngine;
 
 namespace CoinHunter.Levels.Interactive
 {
-    public class DoorOpen : MonoBehaviour
+    public class Door : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-        //[SerializeField] private string _movingBool = "Moving";
         [SerializeField] private string _doorBool = "DoorBool";
 
-
-
-        public void Open()
+        public void SetOpened(bool value)
         {
-            _animator.SetBool(_doorBool, true);
+            _animator.SetBool(_doorBool, value);
         }
     }
 }
