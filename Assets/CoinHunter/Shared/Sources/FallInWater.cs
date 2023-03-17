@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using CoinHunter.Player;
+using CoinHunter.Levels.Interactive;
 
-
-public class FallInWater : MonoBehaviour
+namespace CoinHunter.Levels.Interactive
 {
-    public event Action GameOver;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class FallInWater : MonoBehaviour
     {
 
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("GameOver");
-            GameOver?.Invoke();
+
+            if (collision.gameObject.TryGetComponent<IWaterReaction>(out IWaterReaction iWaterReaction))
+            {
+                iWaterReaction.ReactWater();
+            }
         }
     }
 }
+
