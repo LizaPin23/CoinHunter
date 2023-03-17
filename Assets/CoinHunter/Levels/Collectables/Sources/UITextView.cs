@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace CoinHunter.Levels.Collectables
 {
-    public class UICoinsView : MonoBehaviour
+    public class UITextView : MonoBehaviour
     {
         [SerializeField] private TMP_Text _text;
 
-        public void ShowCoins(int money)
+        public void ShowValue(int value)
         {
-            _text.SetText(money.ToString());
+            _text.SetText(value.ToString());
         }
     }
 }

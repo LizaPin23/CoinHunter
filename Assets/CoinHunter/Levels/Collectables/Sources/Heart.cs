@@ -7,15 +7,16 @@ namespace CoinHunter.Levels.Collectables
 {
     public class Heart : MonoBehaviour, ICollectable
     {
+        [SerializeField] private int _value = 1;
         [SerializeField] private Animator _animator;
         [SerializeField] private string _visibleParam;
         [SerializeField] private Collider2D _collider;
 
-        public event Action Collected;
+        public event Action<int> Collected;
 
         public void Collect()
         {
-            Collected?.Invoke();
+            Collected?.Invoke(_value);
             Hide();
         }
 
