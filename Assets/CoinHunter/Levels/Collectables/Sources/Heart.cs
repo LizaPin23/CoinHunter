@@ -12,12 +12,13 @@ namespace CoinHunter.Levels.Collectables
         [SerializeField] private string _visibleParam;
         [SerializeField] private Collider2D _collider;
 
-        public event Action<int> Collected;
+        public int Value => _value;
+
+        public event Action<Heart> Collected;
 
         public void Collect()
         {
-            Collected?.Invoke(_value);
-            Hide();
+            Collected?.Invoke(this);
         }
 
         public void Show()

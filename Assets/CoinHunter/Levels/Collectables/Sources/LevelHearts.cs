@@ -7,8 +7,9 @@ namespace CoinHunter.Levels.Collectables
     {
         [SerializeField] private Heart[] _hearts;
         [SerializeField] private UITextView _heartsView;
-
         [SerializeField] private int _startLives = 3;
+        [SerializeField] private int _maxLives = 3;
+
         private int _inGameLives;
 
         public event Action RunOutOfLives;
@@ -25,11 +26,19 @@ namespace CoinHunter.Levels.Collectables
             }
         }
 
-        private void OnHeartCollected(int value)
+        private void OnHeartCollected(Heart collectedHeart)
         {
-            _inGameLives += value;
-            _heartsView.ShowValue(_inGameLives);
+            int currentLives = _inGameLives;
+            currentLives += collectedHeart.Value;
 
+            if (currentLives > _maxLives)
+            {
+                return;
+            }
+            
+            _inGameLives = currentLives;
+            collectedHeart.Hide();
+            _heartsView.ShowValue(_inGameLives);
         }
 
         private void OnHeartConsumed(int value)
