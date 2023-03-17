@@ -4,7 +4,7 @@ using CoinHunter.Levels.Interactive;
 
 namespace CoinHunter.Player
 {
-    public class PlayerInteractive : MonoBehaviour, IWaterReaction
+    public class PlayerInteractive : MonoBehaviour, IWaterReaction, IButtonPress
     {
         public void ReactWater()
         {
