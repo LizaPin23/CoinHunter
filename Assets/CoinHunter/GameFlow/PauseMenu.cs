@@ -1,12 +1,10 @@
-﻿
-using System;
+﻿using System;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
     public event Action QuitButtonPressed;
     public event Action ContinueButtonPressed;
-    public event Action PauseButtonPressed;
 
     private void Awake()
     {

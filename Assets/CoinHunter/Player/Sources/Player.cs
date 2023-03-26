@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using CoinHunter.GameFlow;
+using UnityEngine;
 
 namespace CoinHunter.Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IGameStateListener
     {
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerAnimator _animator;
@@ -36,9 +37,9 @@ namespace CoinHunter.Player
             _animator.SetOnAir(!value);
         }
 
-        private void OnGameOver()
+        public void OnGameStateChanged(GameState value)
         {
-            //появляется экран и все останавливается
+            Debug.Log(value);
         }
     }
 }
