@@ -32,11 +32,6 @@ namespace CoinHunter.GameFlow
 
             }
         }
-
-        public void Switch()
-        {
-
-        }
     }
 }
 

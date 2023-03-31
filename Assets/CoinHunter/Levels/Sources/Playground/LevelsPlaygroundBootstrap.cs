@@ -1,4 +1,6 @@
-﻿using CoinHunter.GameFlow;
+﻿using System;
+using System.Collections.Generic;
+using CoinHunter.GameFlow;
 using CoinHunter.Levels.Collectables;
 using CoinHunter.Shared;
 using UnityEngine;
@@ -23,15 +25,46 @@ namespace CoinHunter.Levels.Playground
             _coins.Initialize();
             _hearts.Initialize();
 
-            _gameFlowController = new GameFlowController()
+            IGameStateListener[] gameStateListeners = CreateGameStateListeners();
+            IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
+            IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
+            
+            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers);
         }
 
-        private IGameStateListener[] StateListener()
+        private void Start()
         {
-
+            _gameFlowController.StartGame();
         }
 
+        private IGameStateListener[] CreateGameStateListeners()
+        {
+            List<IGameStateListener> result = new List<IGameStateListener>();
+            result.Add(_uiStateSwitcher);
+            result.Add(_player);
 
+            return result.ToArray();
+        }
+
+        private IPauseInvoker[] CreatePauseInvokers()
+        {
+            IPauseInvoker[] result = new[]
+            {
+                _input
+            };
+
+            return result;
+        }
+        
+        private IGameOverInvoker[] CreateGameOverInvokers()
+        {
+            IGameOverInvoker[] result = new[]
+            {
+                _hearts
+            };
+
+            return result;
+        }
         
     }
 }

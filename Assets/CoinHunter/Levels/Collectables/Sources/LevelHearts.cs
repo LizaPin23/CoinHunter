@@ -1,9 +1,10 @@
 ﻿using System;
+using CoinHunter.GameFlow;
 using UnityEngine;
 
 namespace CoinHunter.Levels.Collectables
 {
-    public class LevelHearts : MonoBehaviour
+    public class LevelHearts : MonoBehaviour, IGameOverInvoker
     {
         [SerializeField] private Heart[] _hearts;
         [SerializeField] private UITextView _heartsView;
@@ -11,8 +12,8 @@ namespace CoinHunter.Levels.Collectables
         [SerializeField] private int _maxLives = 3;
 
         private int _inGameLives;
-
-        public event Action RunOutOfLives;
+        
+        public event Action GameOver;
 
 
         public void Initialize()
@@ -48,7 +49,7 @@ namespace CoinHunter.Levels.Collectables
             
             if (_inGameLives == 0)
             {
-                RunOutOfLives?.Invoke();
+                GameOver?.Invoke();
             }
 
         }

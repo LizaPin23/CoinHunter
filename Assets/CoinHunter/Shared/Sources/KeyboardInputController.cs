@@ -1,10 +1,12 @@
 ﻿using System;
+using CoinHunter.GameFlow;
 using UnityEngine;
 
 namespace CoinHunter.Shared
 {
-    public class KeyboardInputController : MonoBehaviour
+    public class KeyboardInputController : MonoBehaviour, IPauseInvoker
     {
+        public event Action Pause;
         public event Action SpacePressed;
         public event Action<float> Movement;
 
@@ -13,6 +15,11 @@ namespace CoinHunter.Shared
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SpacePressed?.Invoke();
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Pause?.Invoke();
             }
 
             CatchMovementButtons();
@@ -24,6 +31,7 @@ namespace CoinHunter.Shared
 
             Movement?.Invoke(movementX);
         }
+
     }
 }
 

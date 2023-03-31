@@ -39,7 +39,12 @@ namespace CoinHunter.Player
 
         public void OnGameStateChanged(GameState value)
         {
-            Debug.Log(value);
+            if (value != GameState.InGame)
+                _movement.enabled = false;
+            else
+            {
+                _movement.enabled = true;
+            }
         }
     }
 }
