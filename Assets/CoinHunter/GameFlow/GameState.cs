@@ -2,8 +2,7 @@
 {
     public enum GameState
     {
-        RestartGame,
-        ContinueGame,
+        InGame,
         Pause,
         GameOver
     }

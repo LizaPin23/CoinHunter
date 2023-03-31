@@ -13,7 +13,7 @@ namespace CoinHunter.GameFlow
             throw new System.NotImplementedException();
         }
 
-        public void Perecluchenie()
+        public void Switch()
         {
 
         }

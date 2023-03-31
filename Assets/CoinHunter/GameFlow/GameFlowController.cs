@@ -31,7 +31,7 @@ namespace CoinHunter.GameFlow
 
         public void StartGame()
         {
-            SetGameState(GameState.RestartGame);
+            SetGameState(GameState.InGame);
         }
 
         private void OnGameOver()
