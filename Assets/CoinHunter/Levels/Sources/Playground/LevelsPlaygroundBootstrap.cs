@@ -22,7 +22,16 @@ namespace CoinHunter.Levels.Playground
 
             _coins.Initialize();
             _hearts.Initialize();
+
+            _gameFlowController = new GameFlowController()
         }
+
+        private IGameStateListener[] StateListener()
+        {
+
+        }
+
+
         
     }
 }

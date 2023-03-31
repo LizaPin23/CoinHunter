@@ -5351,6 +5351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259928357}
+  - component: {fileID: 259928358}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -5380,6 +5381,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &259928358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259928356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced179940d6521549b24204a23881ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &354166886 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1296507002891925762, guid: 2e5b0c6d4c2251749a993fea3588012c,
@@ -6663,7 +6676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 687345050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504c017ce7379d547b0e04666360f583, type: 3}
+  m_Script: {fileID: 11500000, guid: ced179940d6521549b24204a23881ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &710063340 stripped
@@ -6979,6 +6992,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &932198879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 393414385660935145, guid: 2e5b0c6d4c2251749a993fea3588012c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1216278130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &932198880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932198879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced179940d6521549b24204a23881ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &976871619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 544709347341136720, guid: 1245a766b55cd3c4394fedb78c517304,
@@ -20721,7 +20752,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0563dd5639b00cf49a2d209cfbadd8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windows: 0
+  _uIMenuPause: {fileID: 687345052}
+  _uIMenuGameOver: {fileID: 259928358}
+  _uIMenuInGame: {fileID: 932198880}
 --- !u!1001 &1216278130
 PrefabInstance:
   m_ObjectHideFlags: 0
