@@ -5,16 +5,11 @@ namespace Homework.Animals
 {
     public class Wolf : IAnimal
     {
-        public string Color { get; }
-
-        public Wolf(string color)
-        {
-            Color = color;
-        }
-
+        public string Color => "Grey";
+        
         public void MakePhoto()
         {
-            Debug.Log("Сфотографировал");
+            Debug.Log("Сфотографировал волка");
         }
     }
 }

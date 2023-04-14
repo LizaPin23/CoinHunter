@@ -7,9 +7,9 @@ namespace Homework.Animals
     {
         void Start()
         {
-            IAnimal bear = new Bear("коричневый");
-            IAnimal fox = new Fox("рыжая");
-            IAnimal wolf = new Wolf("серый");
+            IAnimal bear = new Bear();
+            IAnimal fox = new Fox();
+            IAnimal wolf = new Wolf();
 
             IAnimal[] animals = new[]
             {
