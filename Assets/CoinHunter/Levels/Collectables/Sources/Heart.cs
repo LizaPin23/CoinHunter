@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CoinHunter.Levels.Collectables
@@ -19,7 +17,6 @@ namespace CoinHunter.Levels.Collectables
         public void Collect()
         {
             Collected?.Invoke(this);
-            Debug.Log("привет");
         }
 
         public void Show()

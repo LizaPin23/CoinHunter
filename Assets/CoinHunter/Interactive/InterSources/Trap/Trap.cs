@@ -6,11 +6,12 @@ namespace CoinHunter.Levels.Traps
 {
     public class Trap : MonoBehaviour
     {
-        [SerializeField] private int _uron = 1;
+        [SerializeField] private int _damage = 1;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Collider2D _collider;
 
-        public int Uron => _uron;
+        public int Damage => _damage;
+        
+        
 
 
 
