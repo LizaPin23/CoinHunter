@@ -19,6 +19,7 @@ namespace CoinHunter.Levels.Collectables
         public void Initialize()
         {
             _inGameLives = _startLives;
+            ControlHeartsCollider();
             _heartsView.ShowValue(_inGameLives);
 
             for (int i = 0; i < _hearts.Length; i++)
@@ -27,17 +28,22 @@ namespace CoinHunter.Levels.Collectables
             }
         }
 
+        private void ControlHeartsCollider()
+        {
+            for (int i = 0; i < _hearts.Length; i++)
+            {
+                bool result = _inGameLives >= _maxLives;
+                _hearts[i].SetColliderActive(!result);
+            }
+
+        }
+
         private void OnHeartCollected(Heart collectedHeart)
         {
-            int currentLives = _inGameLives;
-            currentLives += collectedHeart.Value;
 
-            if (currentLives > _maxLives)
-            {
-                return;
-            }
-            
-            _inGameLives = currentLives;
+
+            _inGameLives += collectedHeart.Value;
+            ControlHeartsCollider();
             collectedHeart.Hide();
             _heartsView.ShowValue(_inGameLives);
         }
@@ -45,6 +51,7 @@ namespace CoinHunter.Levels.Collectables
         private void OnHeartConsumed(int value)
         {
             _inGameLives -= value;
+            ControlHeartsCollider();
             _heartsView.ShowValue(_inGameLives);
             
             if (_inGameLives == 0)

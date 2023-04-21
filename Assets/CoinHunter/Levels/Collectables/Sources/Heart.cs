@@ -19,6 +19,7 @@ namespace CoinHunter.Levels.Collectables
         public void Collect()
         {
             Collected?.Invoke(this);
+            Debug.Log("привет");
         }
 
         public void Show()
@@ -31,6 +32,11 @@ namespace CoinHunter.Levels.Collectables
         {
             _animator.SetBool(_visibleParam, false);
             _collider.enabled = false;
+        }
+
+        public void SetColliderActive(bool hearts)
+        {
+            _collider.enabled = hearts;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Homework.Animals
 
             Photographer photographer = new Photographer(animals);
             photographer.TryMakePhotoAnimal();
-            photographer.MakePhotoOrangeAnimal();
+            photographer.MakePhotoOrangeAnimal("Orange");
         }
     }
 }

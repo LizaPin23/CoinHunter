@@ -11,12 +11,21 @@
 
         public void TryMakePhotoAnimal()
         {
-            
+            for (int i = 0; i < _animals.Length; i++)
+            {
+                _animals[i].MakePhoto();
+            }
         }
 
-        public void MakePhotoOrangeAnimal()
+        public void MakePhotoOrangeAnimal(string color)
         {
-            
+            for (int i = 0; i < _animals.Length; i++)
+            {
+                if (_animals[i].Color == color)
+                {
+                    _animals[i].MakePhoto();
+                }
+            }
         }
     }
 }
