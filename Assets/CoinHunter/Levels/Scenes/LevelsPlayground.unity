@@ -6085,6 +6085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cc1f59fbce00a4da9b700674270e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _traps:
+  - {fileID: 798197367739125928}
 --- !u!4 &452853392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 544709347341136720, guid: 1245a766b55cd3c4394fedb78c517304,
@@ -20510,6 +20512,7 @@ MonoBehaviour:
   _coins: {fileID: 1986696195}
   _hearts: {fileID: 1581961051}
   _uiStateSwitcher: {fileID: 1211042355}
+  _traps: {fileID: 430270955}
 --- !u!4 &1118964213
 Transform:
   m_ObjectHideFlags: 0
@@ -22601,6 +22604,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b18128aabb3f540b1429b0e6066f2a, type: 3}
+--- !u!114 &798197367739125928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2941655749611196281, guid: 72b18128aabb3f540b1429b0e6066f2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 798197367739125927}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d047e0faff8924a90967cef3a94269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8618720221606983469
 PrefabInstance:
   m_ObjectHideFlags: 0

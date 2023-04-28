@@ -48,7 +48,7 @@ namespace CoinHunter.Levels.Collectables
             _heartsView.ShowValue(_inGameLives);
         }
 
-        private void OnHeartConsumed(int value)
+        public void OnHeartConsumed(int value)
         {
             _inGameLives -= value;
             ControlHeartsCollider();
@@ -59,6 +59,7 @@ namespace CoinHunter.Levels.Collectables
                 GameOver?.Invoke();
             }
 
+            Debug.Log("Вызывается");
         }
     }
 }

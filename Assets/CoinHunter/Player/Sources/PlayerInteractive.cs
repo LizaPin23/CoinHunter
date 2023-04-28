@@ -1,6 +1,8 @@
 ﻿using CoinHunter.Levels.Collectables;
 using UnityEngine;
 using CoinHunter.Levels.Interactive;
+using CoinHunter.Levels.Interactive.Traps;
+
 
 namespace CoinHunter.Player
 {
@@ -16,6 +18,11 @@ namespace CoinHunter.Player
             if (collision.gameObject.TryGetComponent<ICollectable>(out ICollectable collectable))
             {
                 collectable.Collect();
+            }
+
+            if (collision.gameObject.TryGetComponent<ITrap>(out ITrap trap))
+            {
+                trap.Activate();
             }
         }
     }

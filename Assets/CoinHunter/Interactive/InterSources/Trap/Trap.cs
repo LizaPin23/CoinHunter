@@ -1,20 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using System;
 using UnityEngine;
 
-namespace CoinHunter.Levels.Traps
+namespace CoinHunter.Levels.Interactive.Traps 
 {
-    public class Trap : MonoBehaviour
+    public class Trap : MonoBehaviour, ITrap 
     {
         [SerializeField] private int _damage = 1;
         [SerializeField] private Animator _animator;
+        [SerializeField] private string _triggerParam = "SpikeTrigger";
+        public event Action<int> GetInTrap;
+
 
         public int Damage => _damage;
-        
-        
 
-
-
+        public void Activate()
+        {
+            GetInTrap?.Invoke(_damage);
+            Debug.Log("Отправил ивент");
+            _animator.SetTrigger(_triggerParam);
+        }
     }
 }
 

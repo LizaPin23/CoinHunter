@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoinHunter.GameFlow;
 using CoinHunter.Levels.Collectables;
+using CoinHunter.Levels.Interactive.Traps;
 using CoinHunter.Shared;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace CoinHunter.Levels.Playground
         [SerializeField] private LevelCoins _coins;
         [SerializeField] private LevelHearts _hearts;
         [SerializeField] private UIStateSwitcher _uiStateSwitcher;
+        [SerializeField] private Traps _traps;
 
         private GameFlowController _gameFlowController;
 
@@ -30,6 +32,8 @@ namespace CoinHunter.Levels.Playground
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
             _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers);
+
+            _traps.GetInTraps += _hearts.OnHeartConsumed;
         }
 
         private void Start()
