@@ -32,6 +32,11 @@ namespace CoinHunter.Player
             }
         }
 
+        public void OnDamage()
+        {
+            _animator.PlayDamage();
+        }
+
         private void OnGroundStateChanged(bool value)
         {
             _animator.SetOnAir(!value);

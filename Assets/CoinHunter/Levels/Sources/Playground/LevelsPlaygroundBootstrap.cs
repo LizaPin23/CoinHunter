@@ -21,12 +21,8 @@ namespace CoinHunter.Levels.Playground
 
         private void Awake()
         {
-            _input.Movement += _player.OnMovementKeyPressed;
-            _input.SpacePressed += _player.OnJumpKeyPressed;
-
-            _coins.Initialize();
-            _hearts.Initialize();
-
+            InitializeSystems();
+            
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
@@ -34,11 +30,27 @@ namespace CoinHunter.Levels.Playground
             _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers);
 
             _traps.GetInTraps += _hearts.OnHeartConsumed;
+            
+            SubscribePlayer();
         }
 
         private void Start()
         {
             _gameFlowController.StartGame();
+        }
+
+        private void InitializeSystems()
+        {
+            _coins.Initialize();
+            _hearts.Initialize();
+            _traps.Initialize();
+        }
+
+        private void SubscribePlayer()
+        {
+            _input.Movement += _player.OnMovementKeyPressed;
+            _input.SpacePressed += _player.OnJumpKeyPressed;
+            _hearts.HeartConsumed += _player.OnDamage;
         }
 
         private IGameStateListener[] CreateGameStateListeners()

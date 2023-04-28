@@ -17,7 +17,6 @@ namespace CoinHunter.Levels.Interactive.Traps
         public void Activate()
         {
             GetInTrap?.Invoke(_damage);
-            Debug.Log("Отправил ивент");
             _animator.SetTrigger(_triggerParam);
         }
     }

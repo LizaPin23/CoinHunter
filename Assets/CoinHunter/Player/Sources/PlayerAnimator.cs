@@ -7,7 +7,7 @@ namespace CoinHunter.Player
         [SerializeField] private Animator _animator;
         [SerializeField] private string _movingBool = "Moving";
         [SerializeField] private string _airBool = "OnAir";
-        [SerializeField] private string _trapBool = "Trap";
+        [SerializeField] private string _trapTrigger = "Trap";
 
 
         public void SetOnAir(bool value)
@@ -20,9 +20,9 @@ namespace CoinHunter.Player
             _animator.SetBool(_movingBool, value);
         }
 
-        public void SetTrap(bool value)
+        public void PlayDamage()
         {
-            _animator.SetBool(_trapBool, value);
+            _animator.SetTrigger(_trapTrigger);
         }
     }
 }

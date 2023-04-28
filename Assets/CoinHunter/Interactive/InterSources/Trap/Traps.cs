@@ -8,12 +8,11 @@ namespace CoinHunter.Levels.Interactive.Traps
         [SerializeField] private Trap[] _traps;
         public event Action<int> GetInTraps;
 
-        private void Initialized()
+        public void Initialize()
         {
             for (int i = 0; i < _traps.Length; i++)
             {
                 Trap trap = _traps[i];
-                // Ловушка не подписывается, поэтому (стр. 25)
                 trap.GetInTrap += OnGetInTraps;
             }
         }
@@ -21,8 +20,6 @@ namespace CoinHunter.Levels.Interactive.Traps
         private void OnGetInTraps(int _damage)
         {
             GetInTraps?.Invoke(_damage);
-            Debug.Log("Привет");
-            //Ивент из Трап отправляется, но тут не срабатывает
         }
     }
 }

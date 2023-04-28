@@ -14,6 +14,8 @@ namespace CoinHunter.Levels.Collectables
         private int _inGameLives;
         
         public event Action GameOver;
+        public event Action HeartConsumed;
+        public event Action HeartReceived;
 
 
         public void Initialize()
@@ -40,12 +42,11 @@ namespace CoinHunter.Levels.Collectables
 
         private void OnHeartCollected(Heart collectedHeart)
         {
-
-
             _inGameLives += collectedHeart.Value;
             ControlHeartsCollider();
             collectedHeart.Hide();
             _heartsView.ShowValue(_inGameLives);
+            HeartReceived?.Invoke();
         }
 
         public void OnHeartConsumed(int value)
@@ -54,12 +55,12 @@ namespace CoinHunter.Levels.Collectables
             ControlHeartsCollider();
             _heartsView.ShowValue(_inGameLives);
             
+            HeartConsumed?.Invoke();
+            
             if (_inGameLives == 0)
             {
                 GameOver?.Invoke();
             }
-
-            Debug.Log("Вызывается");
         }
     }
 }
