@@ -1,9 +1,10 @@
 ﻿
+using CoinHunter.GameFlow;
 using UnityEngine;
 
 namespace CoinHunter.Levels.Collectables
 {
-    public class LevelCoins : MonoBehaviour
+    public class LevelCoins : MonoBehaviour, IRestartListener
     {
         [SerializeField] private Coin[] _coins;
         [SerializeField] private UITextView _coinsView;
@@ -12,10 +13,6 @@ namespace CoinHunter.Levels.Collectables
 
         public void Initialize()
         {
-            _money = 0;
-
-            _coinsView.ShowValue(_money);
-
             for (int i = 0; i < _coins.Length; i++)
             {
                 _coins[i].Collected += OnCoinCollected;
@@ -26,7 +23,17 @@ namespace CoinHunter.Levels.Collectables
         {
             _money += value;
             _coinsView.ShowValue(_money);
+        }
 
+        public void OnGameRestart()
+        {
+            _money = 0;
+            _coinsView.ShowValue(_money);
+            
+            for (int i = 0; i < _coins.Length; i++)
+            {
+                _coins[i].Show();
+            }
         }
     }
 }

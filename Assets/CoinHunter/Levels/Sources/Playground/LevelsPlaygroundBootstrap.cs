@@ -25,13 +25,15 @@ namespace CoinHunter.Levels.Playground
             InitializeSystems();
             
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
+            //RestartListeners?
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
             IRestartInvoker[] restartInvokers = CreateRestartInvokers();
             IContinueInvoker[] continueInvokers = CreateContinueInvokers();
             IQuitInvoker[] quitInvokers = CreateQuitInvokers();
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
-            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, continueInvokers, quitInvokers, restartInvokers);
+            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, 
+                continueInvokers, quitInvokers, restartInvokers /* restartListeners?*/);
 
             _traps.GetInTraps += _hearts.OnHeartConsumed;
             
