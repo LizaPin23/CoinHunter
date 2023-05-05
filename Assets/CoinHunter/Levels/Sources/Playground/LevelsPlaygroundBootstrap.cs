@@ -25,6 +25,9 @@ namespace CoinHunter.Levels.Playground
             
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
+            //IRestartInvoker[] restartInvokers = CreateRestartInvokers();
+            //IContinueInvoker[] continueInvokers = CreateContinueInvokers();
+            //IQuitInvoker[] quitInvokers = CreateQuitInvokers();
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
             _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers);
@@ -71,7 +74,17 @@ namespace CoinHunter.Levels.Playground
 
             return result;
         }
-        
+
+        //private IRestartInvoker[] CreateRestartInvokers()
+        //{
+        //    IRestartInvoker[] result = new[]
+        //    {
+
+        //    };
+
+        //    return result;
+        //}
+
         private IGameOverInvoker[] CreateGameOverInvokers()
         {
             IGameOverInvoker[] result = new[]
@@ -81,7 +94,27 @@ namespace CoinHunter.Levels.Playground
 
             return result;
         }
-        
+
+        //private IQuitInvoker[] CreateQuitInvokers()
+        //{
+        //    IQuitInvoker[] result = new[]
+        //    {
+               
+        //    };
+
+        //    return result;
+        //}
+
+        //private IGameOverInvoker[] CreateContinueInvokers()
+        //{
+        //    IGameOverInvoker[] result = new[]
+        //    {
+
+        //    };
+
+        //    return result;
+        //}
     }
 }
+
 

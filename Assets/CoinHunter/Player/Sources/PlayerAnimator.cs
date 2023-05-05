@@ -12,6 +12,7 @@ namespace CoinHunter.Player
 
         public void SetOnAir(bool value)
         {
+            
             _animator.SetBool(_airBool, value);
         }
 

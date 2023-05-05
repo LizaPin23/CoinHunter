@@ -11,6 +11,9 @@ namespace CoinHunter.Player
 
         public void Jump()
         {
+            if (!enabled)
+                return;
+
             _rigidbody.AddForce(jumpDirection * _jumpForce, ForceMode2D.Impulse);
         }
     }

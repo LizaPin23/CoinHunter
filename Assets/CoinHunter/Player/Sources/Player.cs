@@ -10,6 +10,7 @@ namespace CoinHunter.Player
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGround _ground;
         [SerializeField] private PlayerSideSwitcher _sideSwitcher;
+        private bool _inGame;
 
         private void Awake()
         {
@@ -18,6 +19,9 @@ namespace CoinHunter.Player
 
         public void OnMovementKeyPressed(float movement)
         {
+            if (_inGame == false)
+                return;
+
             _movement.Move(movement);
             _sideSwitcher.ChooseSide(movement);
             _animator.SetMoving(!Mathf.Approximately(movement, 0));
@@ -25,6 +29,9 @@ namespace CoinHunter.Player
 
         public void OnJumpKeyPressed()
         {
+            if (_inGame == false)
+                return;
+
             if (_ground.Grounded)
             {
                 _jump.Jump();
@@ -34,6 +41,9 @@ namespace CoinHunter.Player
 
         public void OnDamage()
         {
+            if (_inGame == false)
+                return;
+
             _animator.PlayDamage();
         }
 
@@ -44,13 +54,9 @@ namespace CoinHunter.Player
 
         public void OnGameStateChanged(GameState value)
         {
-            if (value != GameState.InGame)
-                _movement.enabled = false;
-            else
-            {
-                _movement.enabled = true;
-            }
+            _inGame = value == GameState.InGame;
         }
+
     }
 }
 

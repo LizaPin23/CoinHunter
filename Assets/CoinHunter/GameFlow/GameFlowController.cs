@@ -10,6 +10,7 @@ namespace CoinHunter.GameFlow
         private readonly List<IGameOverInvoker> _gameOverInvokers;
         private readonly List<IPauseInvoker> _pauseInvokers;
 
+
         public GameFlowController(IGameStateListener[] listeners, IPauseInvoker[] pauseInvokers,
             IGameOverInvoker[] gameOverInvokers)
         {
@@ -32,16 +33,20 @@ namespace CoinHunter.GameFlow
         public void StartGame()
         {
             SetGameState(GameState.InGame);
+            TimeScaleActive(true);
         }
 
         private void OnGameOver()
         {
             SetGameState(GameState.GameOver);
+            TimeScaleActive(false);
+
         }
 
         private void OnPause()
         {
             SetGameState(GameState.Pause);
+            TimeScaleActive(false);
         }
         
         private void SetGameState(GameState state)
@@ -67,6 +72,18 @@ namespace CoinHunter.GameFlow
             foreach (var invoker in _pauseInvokers)
             {
                 invoker.Pause -= OnPause;
+            }
+        }
+
+        private void TimeScaleActive(bool result)
+        {
+            if (result == true)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
             }
         }
     }
