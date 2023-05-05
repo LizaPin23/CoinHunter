@@ -7,26 +7,32 @@ namespace CoinHunter.GameFlow
     {
         private GameState _state;
         private readonly List<IGameStateListener> _listeners;
+
         private readonly List<IGameOverInvoker> _gameOverInvokers;
         private readonly List<IPauseInvoker> _pauseInvokers;
         private readonly List<IContinueInvoker> _continueInvokers;
+        private readonly List<IQuitInvoker> _quitInvokers;
+        private readonly List<IRestartInvoker> _restartInvokers;
+
 
         private GameState _currentState;
 
         public GameFlowController(IGameStateListener[] listeners, IPauseInvoker[] pauseInvokers,
-            IGameOverInvoker[] gameOverInvokers, IContinueInvoker[] continueInvokers)
+            IGameOverInvoker[] gameOverInvokers, IContinueInvoker[] continueInvokers,
+            IQuitInvoker[] quitInvokers, IRestartInvoker[] restartInvokers)
         {
             _listeners = new List<IGameStateListener>(listeners);
             _gameOverInvokers = new List<IGameOverInvoker>(gameOverInvokers);
             _continueInvokers = new List<IContinueInvoker>(continueInvokers);
-            
+            _pauseInvokers = new List<IPauseInvoker>(pauseInvokers);
+            _quitInvokers = new List<IQuitInvoker>(quitInvokers);
+            _restartInvokers = new List<IRestartInvoker>(restartInvokers);
+
             foreach (var invoker in _gameOverInvokers)
             {
                 invoker.GameOver += OnGameOver;
             }
-            
-            _pauseInvokers = new List<IPauseInvoker>(pauseInvokers);
-            
+
             foreach (var invoker in _pauseInvokers)
             {
                 invoker.Pause += OnPause;
@@ -36,6 +42,16 @@ namespace CoinHunter.GameFlow
             {
                 invoker.Continue += OnContinue;
             }
+
+            foreach (var invoker in _quitInvokers)
+            {
+                invoker.Quit += QuitGame;
+            }
+
+            foreach (var invoker in _restartInvokers)
+            {
+                invoker.Restart += OnRestart;
+            }
         }
 
         private void OnContinue()
@@ -44,6 +60,14 @@ namespace CoinHunter.GameFlow
                 return;
             
             StartGame();
+        }
+
+        private void OnRestart()
+        {
+            if (_currentState != GameState.GameOver)
+                return;
+
+            //тут
         }
 
         public void StartGame()
@@ -78,6 +102,7 @@ namespace CoinHunter.GameFlow
         public void QuitGame()
         {
             Application.Quit();
+            Debug.Log("Конец игры");
         }
 
         private void OnDestroy()

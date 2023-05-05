@@ -26,12 +26,12 @@ namespace CoinHunter.Levels.Playground
             
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
-            //IRestartInvoker[] restartInvokers = CreateRestartInvokers();
+            IRestartInvoker[] restartInvokers = CreateRestartInvokers();
             IContinueInvoker[] continueInvokers = CreateContinueInvokers();
-            //IQuitInvoker[] quitInvokers = CreateQuitInvokers();
+            IQuitInvoker[] quitInvokers = CreateQuitInvokers();
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
-            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, continueInvokers);
+            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, continueInvokers, quitInvokers, restartInvokers);
 
             _traps.GetInTraps += _hearts.OnHeartConsumed;
             
@@ -76,15 +76,15 @@ namespace CoinHunter.Levels.Playground
             return result;
         }
 
-        //private IRestartInvoker[] CreateRestartInvokers()
-        //{
-        //    IRestartInvoker[] result = new[]
-        //    {
+        private IRestartInvoker[] CreateRestartInvokers()
+        {
+            IRestartInvoker[] result = new[]
+            {
+                _levelUI
+            };
 
-        //    };
-
-        //    return result;
-        //}
+            return result;
+        }
 
         private IGameOverInvoker[] CreateGameOverInvokers()
         {
@@ -96,15 +96,15 @@ namespace CoinHunter.Levels.Playground
             return result;
         }
 
-        //private IQuitInvoker[] CreateQuitInvokers()
-        //{
-        //    IQuitInvoker[] result = new[]
-        //    {
-               
-        //    };
+        private IQuitInvoker[] CreateQuitInvokers()
+        {
+            IQuitInvoker[] result = new[]
+            {
+                _levelUI
+            };
 
-        //    return result;
-        //}
+            return result;
+        }
 
         private IContinueInvoker[] CreateContinueInvokers()
         {
