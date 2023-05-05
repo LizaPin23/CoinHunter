@@ -16,6 +16,7 @@ namespace CoinHunter.Levels.Playground
         [SerializeField] private LevelHearts _hearts;
         [SerializeField] private UIStateSwitcher _uiStateSwitcher;
         [SerializeField] private Traps _traps;
+        [SerializeField] private LevelUI _levelUI;
 
         private GameFlowController _gameFlowController;
 
@@ -26,11 +27,11 @@ namespace CoinHunter.Levels.Playground
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
             //IRestartInvoker[] restartInvokers = CreateRestartInvokers();
-            //IContinueInvoker[] continueInvokers = CreateContinueInvokers();
+            IContinueInvoker[] continueInvokers = CreateContinueInvokers();
             //IQuitInvoker[] quitInvokers = CreateQuitInvokers();
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
-            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers);
+            _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, continueInvokers);
 
             _traps.GetInTraps += _hearts.OnHeartConsumed;
             
@@ -105,15 +106,15 @@ namespace CoinHunter.Levels.Playground
         //    return result;
         //}
 
-        //private IGameOverInvoker[] CreateContinueInvokers()
-        //{
-        //    IGameOverInvoker[] result = new[]
-        //    {
+        private IContinueInvoker[] CreateContinueInvokers()
+        {
+            IContinueInvoker[] result = new[]
+            {
+                _levelUI
+            };
 
-        //    };
-
-        //    return result;
-        //}
+            return result;
+        }
     }
 }
 

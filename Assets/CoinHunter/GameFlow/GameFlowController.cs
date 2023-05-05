@@ -9,13 +9,16 @@ namespace CoinHunter.GameFlow
         private readonly List<IGameStateListener> _listeners;
         private readonly List<IGameOverInvoker> _gameOverInvokers;
         private readonly List<IPauseInvoker> _pauseInvokers;
+        private readonly List<IContinueInvoker> _continueInvokers;
 
+        private GameState _currentState;
 
         public GameFlowController(IGameStateListener[] listeners, IPauseInvoker[] pauseInvokers,
-            IGameOverInvoker[] gameOverInvokers)
+            IGameOverInvoker[] gameOverInvokers, IContinueInvoker[] continueInvokers)
         {
             _listeners = new List<IGameStateListener>(listeners);
             _gameOverInvokers = new List<IGameOverInvoker>(gameOverInvokers);
+            _continueInvokers = new List<IContinueInvoker>(continueInvokers);
             
             foreach (var invoker in _gameOverInvokers)
             {
@@ -28,6 +31,19 @@ namespace CoinHunter.GameFlow
             {
                 invoker.Pause += OnPause;
             }
+            
+            foreach (var invoker in _continueInvokers)
+            {
+                invoker.Continue += OnContinue;
+            }
+        }
+
+        private void OnContinue()
+        {
+            if (_currentState != GameState.Pause)
+                return;
+            
+            StartGame();
         }
 
         public void StartGame()
@@ -51,6 +67,8 @@ namespace CoinHunter.GameFlow
         
         private void SetGameState(GameState state)
         {
+            _currentState = state;
+            
             foreach (var listener in _listeners)
             {
                 listener.OnGameStateChanged(state);
