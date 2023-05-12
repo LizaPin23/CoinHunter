@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace CoinHunter.GameFlow
@@ -13,6 +14,8 @@ namespace CoinHunter.GameFlow
         private readonly List<IContinueInvoker> _continueInvokers;
         private readonly List<IQuitInvoker> _quitInvokers;
         private readonly List<IRestartInvoker> _restartInvokers;
+
+        public Action<> Restart;
 
 
         private GameState _currentState;
@@ -67,7 +70,7 @@ namespace CoinHunter.GameFlow
             if (_currentState != GameState.GameOver)
                 return;
 
-            //тут
+            // добавить тут листенеры
         }
 
         public void StartGame()

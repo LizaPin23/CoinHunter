@@ -8,8 +8,14 @@ namespace CoinHunter.Levels.Collectables
     {
         [SerializeField] private Coin[] _coins;
         [SerializeField] private UITextView _coinsView;
+        private GameFlowController _controller;
 
         private int _money;
+
+        //private void Awake()
+        //{
+        //    _controller.Restart += OnGameRestart()
+        //}
 
         public void Initialize()
         {
