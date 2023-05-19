@@ -38,6 +38,7 @@ namespace CoinHunter.Shared
         private void OnRestartButtonPressed()
         {
             Restart?.Invoke();
+            Debug.Log("РестартБаттон нажимается");
         }
 
         private void OnQuitButtonPressed()

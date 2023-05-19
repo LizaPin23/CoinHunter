@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 namespace CoinHunter.GameFlow
@@ -7,29 +6,30 @@ namespace CoinHunter.GameFlow
     public class GameFlowController
     {
         private GameState _state;
-        private readonly List<IGameStateListener> _listeners;
+        private readonly List<IGameStateListener> _gameStatelisteners;
 
         private readonly List<IGameOverInvoker> _gameOverInvokers;
         private readonly List<IPauseInvoker> _pauseInvokers;
         private readonly List<IContinueInvoker> _continueInvokers;
         private readonly List<IQuitInvoker> _quitInvokers;
         private readonly List<IRestartInvoker> _restartInvokers;
-
-        public Action<> Restart;
+        private readonly List<IRestartListener> _restartListeners;
 
 
         private GameState _currentState;
 
         public GameFlowController(IGameStateListener[] listeners, IPauseInvoker[] pauseInvokers,
             IGameOverInvoker[] gameOverInvokers, IContinueInvoker[] continueInvokers,
-            IQuitInvoker[] quitInvokers, IRestartInvoker[] restartInvokers)
+            IQuitInvoker[] quitInvokers, IRestartInvoker[] restartInvokers, IRestartListener[] restartListeners)
         {
-            _listeners = new List<IGameStateListener>(listeners);
+            _gameStatelisteners = new List<IGameStateListener>(listeners);
             _gameOverInvokers = new List<IGameOverInvoker>(gameOverInvokers);
             _continueInvokers = new List<IContinueInvoker>(continueInvokers);
             _pauseInvokers = new List<IPauseInvoker>(pauseInvokers);
             _quitInvokers = new List<IQuitInvoker>(quitInvokers);
             _restartInvokers = new List<IRestartInvoker>(restartInvokers);
+            _restartListeners = new List<IRestartListener>(restartListeners);
+
 
             foreach (var invoker in _gameOverInvokers)
             {
@@ -62,18 +62,21 @@ namespace CoinHunter.GameFlow
             if (_currentState != GameState.Pause)
                 return;
             
-            StartGame();
+            ContinueGame();
         }
 
-        private void OnRestart()
+        public void OnRestart()
         {
-            if (_currentState != GameState.GameOver)
-                return;
+            
+            foreach (var listener in _restartListeners)
+            {
+                listener.OnGameRestart();
+            }
 
-            // добавить тут листенеры
+            ContinueGame();
         }
 
-        public void StartGame()
+        public void ContinueGame()
         {
             SetGameState(GameState.InGame);
             TimeScaleActive(true);
@@ -96,7 +99,7 @@ namespace CoinHunter.GameFlow
         {
             _currentState = state;
             
-            foreach (var listener in _listeners)
+            foreach (var listener in _gameStatelisteners)
             {
                 listener.OnGameStateChanged(state);
             }

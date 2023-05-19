@@ -12,11 +12,6 @@ namespace CoinHunter.Levels.Collectables
 
         private int _money;
 
-        //private void Awake()
-        //{
-        //    _controller.Restart += OnGameRestart()
-        //}
-
         public void Initialize()
         {
             for (int i = 0; i < _coins.Length; i++)

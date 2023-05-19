@@ -12,6 +12,7 @@ namespace CoinHunter.Levels.Playground
     {
         [SerializeField] private KeyboardInputController _input;
         [SerializeField] private Player.Player _player;
+        [SerializeField] private Transform _playerPosition;
         [SerializeField] private LevelCoins _coins;
         [SerializeField] private LevelHearts _hearts;
         [SerializeField] private UIStateSwitcher _uiStateSwitcher;
@@ -25,7 +26,7 @@ namespace CoinHunter.Levels.Playground
             InitializeSystems();
             
             IGameStateListener[] gameStateListeners = CreateGameStateListeners();
-            //RestartListeners?
+            IRestartListener[] restartListeners = CreateRestartListeners();
             IPauseInvoker[] pauseInvokers = CreatePauseInvokers();
             IRestartInvoker[] restartInvokers = CreateRestartInvokers();
             IContinueInvoker[] continueInvokers = CreateContinueInvokers();
@@ -33,7 +34,7 @@ namespace CoinHunter.Levels.Playground
             IGameOverInvoker[] gameOverInvokers = CreateGameOverInvokers();
             
             _gameFlowController = new GameFlowController(gameStateListeners, pauseInvokers, gameOverInvokers, 
-                continueInvokers, quitInvokers, restartInvokers /* restartListeners?*/);
+                continueInvokers, quitInvokers, restartInvokers, restartListeners);
 
             _traps.GetInTraps += _hearts.OnHeartConsumed;
             
@@ -42,14 +43,15 @@ namespace CoinHunter.Levels.Playground
 
         private void Start()
         {
-            _gameFlowController.StartGame();
+            _gameFlowController.OnRestart();
         }
 
         private void InitializeSystems()
-        {
+        { 
             _coins.Initialize();
             _hearts.Initialize();
             _traps.Initialize();
+            _player.Initialize(_playerPosition.position);
         }
 
         private void SubscribePlayer()
@@ -64,6 +66,15 @@ namespace CoinHunter.Levels.Playground
             List<IGameStateListener> result = new List<IGameStateListener>();
             result.Add(_uiStateSwitcher);
             result.Add(_player);
+
+            return result.ToArray();
+        }
+
+        private IRestartListener[] CreateRestartListeners()
+        {
+            List<IRestartListener> result = new List<IRestartListener>();
+            result.Add(_coins);
+            result.Add(_hearts);
 
             return result.ToArray();
         }

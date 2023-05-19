@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CoinHunter.Levels.Collectables
 {
-    public class LevelHearts : MonoBehaviour, IGameOverInvoker
+    public class LevelHearts : MonoBehaviour, IGameOverInvoker, IRestartListener
     {
         [SerializeField] private Heart[] _hearts;
         [SerializeField] private UITextView _heartsView;
@@ -20,10 +20,7 @@ namespace CoinHunter.Levels.Collectables
 
         public void Initialize()
         {
-            _inGameLives = _startLives;
-            ControlHeartsCollider();
-            _heartsView.ShowValue(_inGameLives);
-
+            
             for (int i = 0; i < _hearts.Length; i++)
             {
                 _hearts[i].Collected += OnHeartCollected;
@@ -61,6 +58,13 @@ namespace CoinHunter.Levels.Collectables
             {
                 GameOver?.Invoke();
             }
+        }
+
+        public void OnGameRestart()
+        {
+            _inGameLives = _startLives;
+            ControlHeartsCollider();
+            _heartsView.ShowValue(_inGameLives);
         }
     }
 }
