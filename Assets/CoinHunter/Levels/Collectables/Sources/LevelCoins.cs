@@ -6,14 +6,16 @@ namespace CoinHunter.Levels.Collectables
 {
     public class LevelCoins : MonoBehaviour, IRestartListener
     {
-        [SerializeField] private Coin[] _coins;
-        [SerializeField] private UITextView _coinsView;
+        private UITextView _coinsView;
         private GameFlowController _controller;
+        private Coin[] _coins;
 
         private int _money;
 
-        public void Initialize()
+        public void Initialize(UITextView coinsView)
         {
+            _coinsView = coinsView;
+            _coins = GetComponentsInChildren<Coin>();
             for (int i = 0; i < _coins.Length; i++)
             {
                 _coins[i].Collected += OnCoinCollected;

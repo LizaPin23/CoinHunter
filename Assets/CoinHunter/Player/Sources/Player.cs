@@ -1,21 +1,30 @@
-﻿using CoinHunter.GameFlow;
+﻿using System;
+using CoinHunter.GameFlow;
 using UnityEngine;
 
 namespace CoinHunter.Player
 {
-    public class Player : MonoBehaviour, IGameStateListener, IRestartListener 
+    public class Player : MonoBehaviour, IGameStateListener, IRestartListener, IGameOverInvoker 
     {
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private PlayerAnimator _animator;
         [SerializeField] private PlayerJump _jump;
         [SerializeField] private PlayerGround _ground;
         [SerializeField] private PlayerSideSwitcher _sideSwitcher;
+        [SerializeField] private PlayerInteractive _interaction;
+        
         private Vector3 _position;
         private bool _inGame;
 
         private void Awake()
         {
             _ground.GroundStateChanged += OnGroundStateChanged;
+            _interaction.FallInWater += OnFallInWater;
+        }
+
+        private void OnFallInWater()
+        {
+            GameOver?.Invoke();
         }
 
         public void Initialize(Vector3 startPosition)
@@ -69,6 +78,7 @@ namespace CoinHunter.Player
             _inGame = value == GameState.InGame;
         }
 
+        public event Action GameOver;
     }
 }
 

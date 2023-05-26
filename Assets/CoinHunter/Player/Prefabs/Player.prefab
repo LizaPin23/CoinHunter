@@ -75,6 +75,7 @@ MonoBehaviour:
   _animator: {fileID: 5358858612605168609}
   _movingBool: Moving
   _airBool: OnAir
+  _trapTrigger: Trap
 --- !u!114 &5358858612605168615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ MonoBehaviour:
   _jump: {fileID: 5358858612605168613}
   _ground: {fileID: 5358858613734283549}
   _sideSwitcher: {fileID: 5358858613779228152}
-  _fall: {fileID: 0}
+  _interaction: {fileID: 8687374975141533289}
 --- !u!114 &5358858612605168614
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoinHunter.GameFlow;
 using CoinHunter.Levels.Collectables;
 using CoinHunter.Levels.Interactive.Traps;
@@ -10,13 +9,23 @@ namespace CoinHunter.Levels.Playground
 {
     public class LevelsPlaygroundBootstrap : MonoBehaviour
     {
+        [Header("Services references")] 
         [SerializeField] private KeyboardInputController _input;
-        [SerializeField] private Player.Player _player;
-        [SerializeField] private Transform _playerPosition;
+        
+        [Header("Level references")] 
         [SerializeField] private LevelCoins _coins;
         [SerializeField] private LevelHearts _hearts;
-        [SerializeField] private UIStateSwitcher _uiStateSwitcher;
         [SerializeField] private Traps _traps;
+        
+        [Header("Player references")]
+        [SerializeField] private Player.Player _player;
+        [SerializeField] private Transform _playerPosition;
+        [SerializeField] private CameraFollower _camera;
+
+        [Header("UI references")] 
+        [SerializeField] private UITextView _coinsView;
+        [SerializeField] private UITextView _heartsView;
+        [SerializeField] private UIStateSwitcher _uiStateSwitcher;
         [SerializeField] private LevelUI _levelUI;
 
         private GameFlowController _gameFlowController;
@@ -48,10 +57,11 @@ namespace CoinHunter.Levels.Playground
 
         private void InitializeSystems()
         { 
-            _coins.Initialize();
-            _hearts.Initialize();
+            _coins.Initialize(_coinsView);
+            _hearts.Initialize(_heartsView);
             _traps.Initialize();
             _player.Initialize(_playerPosition.position);
+            _camera.Initialize(_player.transform);
         }
 
         private void SubscribePlayer()
@@ -102,9 +112,11 @@ namespace CoinHunter.Levels.Playground
 
         private IGameOverInvoker[] CreateGameOverInvokers()
         {
+            IGameOverInvoker player = _player;
             IGameOverInvoker[] result = new[]
             {
-                _hearts
+                _hearts,
+                player
             };
 
             return result;

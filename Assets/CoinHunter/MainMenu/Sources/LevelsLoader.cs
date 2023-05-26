@@ -1,17 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-public class LevelsLoader : MonoBehaviour
+namespace CoinHunter.MainMenu
 {
-    [SerializeField] private LevelsDatabase _levelsDatabase;
-
-    public void LoadLevel()
+    public class LevelsLoader : MonoBehaviour
     {
-        string ID = "Test";
-        //взять уровень из базы и загрузить его сцену
-        //_levelsDatabase.GetLevelByID();
-        //SceneManager.LoadScene();
+        [SerializeField] private LevelsDatabase _levelsDatabase;
+
+        public void LoadLevelFromSave()
+        {
+            string ID = "Test";
+            //взять уровень из базы и загрузить его сцену
+            //_levelsDatabase.GetLevelByID();
+            //SceneManager.LoadScene();
+        }
+
+        public void LoadLevelById(string ID)
+        {
+            
+            
+        }
     }
 }
+

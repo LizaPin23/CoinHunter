@@ -1,4 +1,5 @@
-﻿using CoinHunter.Levels.Collectables;
+﻿using System;
+using CoinHunter.Levels.Collectables;
 using UnityEngine;
 using CoinHunter.Levels.Interactive;
 using CoinHunter.Levels.Interactive.Traps;
@@ -8,9 +9,11 @@ namespace CoinHunter.Player
 {
     public class PlayerInteractive : MonoBehaviour, IWaterReaction, IButtonPress
     {
+        public event Action FallInWater;
+        
         public void ReactWater()
         {
-            Debug.Log("GameOver");
+            FallInWater?.Invoke();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
