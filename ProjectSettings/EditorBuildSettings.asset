@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/CoinHunter/MainMenu/MainMenu.unity
+    guid: 84c5c07a404c7964989f88f2899061d4
+  - enabled: 1
+    path: Assets/CoinHunter/Levels/Scenes/LevelsPlayground.unity
+    guid: 5618afd445610b649a7b71a01b8f7298
   m_configObjects: {}

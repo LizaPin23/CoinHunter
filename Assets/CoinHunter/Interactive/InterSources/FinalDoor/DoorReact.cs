@@ -7,13 +7,14 @@ namespace CoinHunter.Levels.Interactive
 {
     public class DoorReact : MonoBehaviour
     {
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent<IWaterReaction>(out IWaterReaction iWaterReaction))
+            if (collision.gameObject.TryGetComponent<PlayerInteractive>(out PlayerInteractive platerInteractive))
             {
                 Debug.Log("Уровень пройден");
             }
         }
+        
     }
 
 }

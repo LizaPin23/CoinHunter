@@ -75,6 +75,7 @@ namespace CoinHunter.Levels.Playground
             List<IRestartListener> result = new List<IRestartListener>();
             result.Add(_coins);
             result.Add(_hearts);
+            result.Add(_player);
 
             return result.ToArray();
         }

@@ -48,7 +48,7 @@ namespace CoinHunter.Player
 
         public void OnGameRestart()
         {
-            Debug.Log(_position);
+            transform.position = _position;
         }
 
         public void OnDamage()
