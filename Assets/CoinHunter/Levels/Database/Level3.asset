@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   _levelName: Level3
-  _sceneName: 
+  _sceneName: Level3
   _prevSprite: {fileID: 0}
   _levelID: 

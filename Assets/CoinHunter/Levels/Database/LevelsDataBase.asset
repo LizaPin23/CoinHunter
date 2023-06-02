@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f826fb0531a5c1344b2df52a0b1d8365, type: 3}
   m_Name: LevelsDataBase
   m_EditorClassIdentifier: 
+  _defaultLevel: {fileID: 11400000, guid: aa1e54c95065fc34b869f40890c1090d, type: 2}
   _levelDatas:
   - {fileID: 11400000, guid: 81ee13cf2a77cf049856830d7bc32122, type: 2}
   - {fileID: 11400000, guid: 64d55b6142a6c50409ce4868c530da4c, type: 2}
+  - {fileID: 11400000, guid: aa1e54c95065fc34b869f40890c1090d, type: 2}
+  - {fileID: 11400000, guid: 59233c5febb886f4db30b7896436ac3e, type: 2}
+  - {fileID: 11400000, guid: 9e1ab3aade201c64080025629ff4d10e, type: 2}

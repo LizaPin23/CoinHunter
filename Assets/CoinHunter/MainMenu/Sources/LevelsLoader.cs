@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CoinHunter.MainMenu
 {
@@ -9,15 +10,13 @@ namespace CoinHunter.MainMenu
         public void LoadLevelFromSave()
         {
             string ID = "Test";
-            //взять уровень из базы и загрузить его сцену
-            //_levelsDatabase.GetLevelByID();
-            //SceneManager.LoadScene();
+            LoadLevelById(ID);
         }
 
         public void LoadLevelById(string ID)
         {
-            
-            
+            LevelData levelData = _levelsDatabase.GetLevelByID(ID);
+            SceneManager.LoadScene(levelData.SceneName);
         }
     }
 }
