@@ -30,7 +30,6 @@ namespace CoinHunter.Player
         public void Initialize(Vector3 startPosition)
         {
             _position = startPosition;
-
         }
 
         public void OnMovementKeyPressed(float movement)
