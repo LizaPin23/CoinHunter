@@ -4,7 +4,7 @@ public class FridgeTest : MonoBehaviour
 {
     [SerializeField] private GameObject _noticeTemplate;
     [SerializeField] private Transform _fridgeRoot;
-    [SerializeField] private int _noticeCount = 20;
+    [SerializeField] private int _noticeCount = 15;
     
     private void Start()
     {

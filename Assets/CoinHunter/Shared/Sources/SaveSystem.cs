@@ -6,21 +6,39 @@ namespace CoinHunter.Shared
     {
         public int CoinsAmount => _data.CoinsAmount;
         public string[] CompletedLevels => _data.CompletedLevels;
-        
-        private UserData _data;
-        
+
+        private UserData _data = new UserData();
+
         private const string prefsKey = "Save";
         
         public void Save()
         {
             string jsonData = JsonUtility.ToJson(_data);
+
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                Debug.LogError("Save error");
+                return;
+            }
+
             PlayerPrefs.SetString(prefsKey, jsonData);
+            PlayerPrefs.Save();
         }
 
         public void Load()
         {
             string jsonData = PlayerPrefs.GetString(prefsKey);
+
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                _data = new UserData();
+                return;
+            }
+
             _data = JsonUtility.FromJson<UserData>(jsonData);
+
+            if (_data == null)
+                _data = new UserData();
         }
 
         public void AddCoinsAmount(int coinsAmount)
