@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CoinHunter/Levels/Scenes/LevelsPlayground.unity
     guid: 5618afd445610b649a7b71a01b8f7298
+  - enabled: 1
+    path: Assets/CoinHunter/Levels/Scenes/Level2.unity
+    guid: c26dc001289db804c83d7cf6e0cb83c0
+  - enabled: 1
+    path: Assets/CoinHunter/Levels/Scenes/Level3.unity
+    guid: 419ce3ffbd012e44aa709833d485e12d
+  - enabled: 1
+    path: Assets/CoinHunter/Levels/Scenes/Level4.unity
+    guid: 062824420dcd63942acf5c7ce58a7643
+  - enabled: 1
+    path: Assets/CoinHunter/Levels/Scenes/Level5.unity
+    guid: 3e3e1627b9d91a745968f80f64ffaad0
   m_configObjects: {}

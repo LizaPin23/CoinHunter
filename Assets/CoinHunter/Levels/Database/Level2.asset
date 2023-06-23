@@ -15,4 +15,4 @@ MonoBehaviour:
   _levelName: Level2
   _sceneName: Level2
   _prevSprite: {fileID: 0}
-  _levelID: 
+  _levelID: Level2

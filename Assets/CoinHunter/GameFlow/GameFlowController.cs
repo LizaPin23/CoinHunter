@@ -10,8 +10,8 @@ namespace CoinHunter.GameFlow
 
         private readonly List<IGameOverInvoker> _gameOverInvokers;
         private readonly List<IPauseInvoker> _pauseInvokers;
+        private readonly List<IFinishInvoker> _finishInvokers;
         private readonly List<IContinueInvoker> _continueInvokers;
-        private readonly List<IQuitInvoker> _quitInvokers;
         private readonly List<IRestartInvoker> _restartInvokers;
         private readonly List<IRestartListener> _restartListeners;
 
@@ -20,20 +20,25 @@ namespace CoinHunter.GameFlow
 
         public GameFlowController(IGameStateListener[] listeners, IPauseInvoker[] pauseInvokers,
             IGameOverInvoker[] gameOverInvokers, IContinueInvoker[] continueInvokers,
-            IQuitInvoker[] quitInvokers, IRestartInvoker[] restartInvokers, IRestartListener[] restartListeners)
+            IRestartInvoker[] restartInvokers, IRestartListener[] restartListeners, IFinishInvoker[] finishInvokers)
         {
             _gameStatelisteners = new List<IGameStateListener>(listeners);
             _gameOverInvokers = new List<IGameOverInvoker>(gameOverInvokers);
             _continueInvokers = new List<IContinueInvoker>(continueInvokers);
             _pauseInvokers = new List<IPauseInvoker>(pauseInvokers);
-            _quitInvokers = new List<IQuitInvoker>(quitInvokers);
             _restartInvokers = new List<IRestartInvoker>(restartInvokers);
             _restartListeners = new List<IRestartListener>(restartListeners);
+            _finishInvokers = new List<IFinishInvoker>(finishInvokers);
 
 
             foreach (var invoker in _gameOverInvokers)
             {
                 invoker.GameOver += OnGameOver;
+            }
+            
+            foreach (var invoker in _finishInvokers)
+            {
+                invoker.FinishGame += FinishGame;
             }
 
             foreach (var invoker in _pauseInvokers)
@@ -44,11 +49,6 @@ namespace CoinHunter.GameFlow
             foreach (var invoker in _continueInvokers)
             {
                 invoker.Continue += OnContinue;
-            }
-
-            foreach (var invoker in _quitInvokers)
-            {
-                invoker.Quit += QuitGame;
             }
 
             foreach (var invoker in _restartInvokers)
@@ -76,10 +76,16 @@ namespace CoinHunter.GameFlow
             ContinueGame();
         }
 
-        public void ContinueGame()
+        private void ContinueGame()
         {
             SetGameState(GameState.InGame);
             TimeScaleActive(true);
+        }
+
+        private void FinishGame()
+        {
+            SetGameState(GameState.Finish);
+            TimeScaleActive(false);
         }
 
         private void OnGameOver()
@@ -103,12 +109,6 @@ namespace CoinHunter.GameFlow
             {
                 listener.OnGameStateChanged(state);
             }
-        }
-
-        public void QuitGame()
-        {
-            Application.Quit();
-            Debug.Log("Конец игры");
         }
 
         private void OnDestroy()

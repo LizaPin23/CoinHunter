@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 namespace CoinHunter.Shared
 {
-    public class LevelUI : MonoBehaviour, IContinueInvoker, IRestartInvoker, IQuitInvoker
+    public class LevelUI : MonoBehaviour, IContinueInvoker, IRestartInvoker, IQuitInvoker, ISaveInvoker
     {
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button[] _restartButtons;
-        [SerializeField] private Button[] _quitButtonsButton;
+        [SerializeField] private Button[] _quitButtons;
+        [SerializeField] private Button _finishQuitButton;
+        [SerializeField] private Button _nextLevelButton;
         
         public event Action Continue;
         public event Action Restart;
         public event Action Quit;
-
-        private void Awake()
+        public event Action NextLevelLoad;
+        
+        private void OnEnable()
         {
             _continueButton.onClick.AddListener(OnContinueButtonPressed);
 
@@ -24,10 +27,43 @@ namespace CoinHunter.Shared
                 button.onClick.AddListener(OnRestartButtonPressed);
             }
             
-            foreach (var button in _quitButtonsButton)
+            foreach (var button in _quitButtons)
             {
                 button.onClick.AddListener(OnQuitButtonPressed);
             }
+            
+            _nextLevelButton.onClick.AddListener(OnNextLevelClicked);
+            _finishQuitButton.onClick.AddListener(OnFinishQuitButtonClicked);
+        }
+
+        private void OnFinishQuitButtonClicked()
+        {
+            SaveLevel?.Invoke();
+            Quit?.Invoke();
+        }
+
+        private void OnDisable()
+        {
+            _continueButton.onClick.RemoveListener(OnContinueButtonPressed);
+
+            foreach (var button in _restartButtons)
+            {
+                button.onClick.RemoveListener(OnRestartButtonPressed);
+            }
+            
+            foreach (var button in _quitButtons)
+            {
+                button.onClick.RemoveListener(OnQuitButtonPressed);
+            }
+            
+            _nextLevelButton.onClick.RemoveListener(OnNextLevelClicked);
+            _finishQuitButton.onClick.RemoveListener(OnFinishQuitButtonClicked);
+        }
+
+        private void OnNextLevelClicked()
+        {
+            SaveLevel?.Invoke();
+            NextLevelLoad?.Invoke();
         }
 
         private void OnContinueButtonPressed()
@@ -38,13 +74,14 @@ namespace CoinHunter.Shared
         private void OnRestartButtonPressed()
         {
             Restart?.Invoke();
-            Debug.Log("РестартБаттон нажимается");
         }
 
         private void OnQuitButtonPressed()
         {
             Quit?.Invoke();
         }
+
+        public event Action SaveLevel;
     }
 }
 

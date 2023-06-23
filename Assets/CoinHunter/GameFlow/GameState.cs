@@ -4,7 +4,8 @@
     {
         InGame,
         Pause,
-        GameOver
+        GameOver,
+        Finish
     }
 }
 

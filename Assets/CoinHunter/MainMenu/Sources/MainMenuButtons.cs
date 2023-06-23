@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace CoinHunter.MainMenu
 {
@@ -27,17 +27,17 @@ namespace CoinHunter.MainMenu
         }
 
 
-        public void OnStartButtonPressed()
+        private void OnStartButtonPressed()
         {
             StartButtonPressed?.Invoke();
         }
 
-        public void OnSelectLevelButtonPressed()
+        private void OnSelectLevelButtonPressed()
         {
             SelectLevelButtonPressed?.Invoke();
         }
 
-        public void OnExitButtonPressed()
+        private void OnExitButtonPressed()
         {
             Application.Quit();
         }

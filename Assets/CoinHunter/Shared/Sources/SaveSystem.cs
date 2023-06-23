@@ -12,6 +12,15 @@ namespace CoinHunter.Shared
 
         private const string prefsKey = "Save";
         
+        public static SaveSystem Instance { get; private set; }
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+            Load();
+            Instance = this;
+        }
+
         public void Save()
         {
             string jsonData = JsonUtility.ToJson(_data);
