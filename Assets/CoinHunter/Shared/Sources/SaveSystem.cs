@@ -5,6 +5,7 @@ namespace CoinHunter.Shared
     public class SaveSystem : MonoBehaviour
     {
         public int CoinsAmount => _data.CoinsAmount;
+        public string CurrentLevel => _data.CurrentLevel;
         public string[] CompletedLevels => _data.CompletedLevels;
 
         private UserData _data = new UserData();
@@ -44,6 +45,12 @@ namespace CoinHunter.Shared
         public void AddCoinsAmount(int coinsAmount)
         {
             _data.CoinsAmount += coinsAmount;
+            Save();
+        }
+
+        public void SetCurrentLevel(string currentLevel)
+        {
+            _data.CurrentLevel = currentLevel;
             Save();
         }
 

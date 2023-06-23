@@ -7,6 +7,7 @@ namespace CoinHunter.Shared
     {
         public int CoinsAmount;
         public string[] CompletedLevels;
+        public string CurrentLevel;
     }
 }
 

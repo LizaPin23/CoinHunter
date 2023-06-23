@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace CoinHunter.MainMenu
 {
@@ -8,25 +9,32 @@ namespace CoinHunter.MainMenu
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _selectLevelButton;
         [SerializeField] private Button _exitButton;
-        [SerializeField] private LevelsLoader _levelLoader;
-          
-        private void Awake()
+        public event Action StartButtonPressed;
+        public event Action SelectLevelButtonPressed;
+
+        private void OnEnable()
         {
             _startButton.onClick.AddListener(OnStartButtonPressed);
             _selectLevelButton.onClick.AddListener(OnSelectLevelButtonPressed);
             _exitButton.onClick.AddListener(OnExitButtonPressed);
         }
 
+        private void OnDisable()
+        {
+            _startButton.onClick.RemoveListener(OnStartButtonPressed);
+            _selectLevelButton.onClick.RemoveListener(OnSelectLevelButtonPressed);
+            _exitButton.onClick.RemoveListener(OnExitButtonPressed);
+        }
+
+
         public void OnStartButtonPressed()
         {
-            Debug.Log("Кнопка старт нажата");
-            _levelLoader.LoadLevelFromSave();
-            
+            StartButtonPressed?.Invoke();
         }
 
         public void OnSelectLevelButtonPressed()
         {
-            Debug.Log("Кнопка выбор уровня нажата");
+            SelectLevelButtonPressed?.Invoke();
         }
 
         public void OnExitButtonPressed()
